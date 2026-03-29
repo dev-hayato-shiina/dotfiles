@@ -93,12 +93,12 @@ nixInfo.lze.h.lsp.set_ft_fallback(function(name)
   end
 end)
 
--- プラグインの読み込み
-for _, file in ipairs(vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/*.lua", false, true)) do
-  nixInfo.lze.load(require("plugins." .. vim.fn.fnamemodify(file, ":t:r")))
-end
-
 require("config.base")
 require("config.option")
 require("config.keymap")
 require("config.autocmd")
+
+-- プラグインの読み込み
+for _, file in ipairs(vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/*.lua", false, true)) do
+  nixInfo.lze.load(require("plugins." .. vim.fn.fnamemodify(file, ":t:r")))
+end

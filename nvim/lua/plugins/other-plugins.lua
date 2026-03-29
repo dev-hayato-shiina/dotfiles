@@ -31,10 +31,6 @@ return {
           nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
           nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
           nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-          nmap('gr', function() Snacks.picker.lsp_references() end, '[G]oto [R]eferences')
-          nmap('gI', function() Snacks.picker.lsp_implementations() end, '[G]oto [I]mplementation')
-          nmap('<leader>ds', function() Snacks.picker.lsp_symbols() end, '[D]ocument [S]ymbols')
-          nmap('<leader>ws', function() Snacks.picker.lsp_workspace_symbols() end, '[W]orkspace [S]ymbols')
 
           -- See `:help K` for why this keymap
           nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
