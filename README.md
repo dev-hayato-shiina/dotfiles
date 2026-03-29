@@ -1,3 +1,3 @@
 ```sh
-ln -s ~/Projects/dotfiles/nvim ~/.config/nvim
+ln -s ~/dotfiles/nvim ~/.config/nvim
 ```
