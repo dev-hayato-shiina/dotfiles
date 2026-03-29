@@ -8,4 +8,3 @@ return {
     vim.g.git_messenger_include_diff = "current"
   end,
 }
-

@@ -47,4 +47,3 @@ return {
     require("fzf-lua").setup()
   end,
 }
-

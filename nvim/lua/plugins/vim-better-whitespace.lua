@@ -1,5 +1,6 @@
 return {
   "vim-better-whitespace",
+  auto_enable = true,
   event = "DeferredUIEnter",
   after = function(_)
     vim.g.better_whitespace_enabled = 1

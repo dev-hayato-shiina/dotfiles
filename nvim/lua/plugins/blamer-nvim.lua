@@ -8,4 +8,3 @@ return {
     vim.g.blamer_show_in_visual_modes = 0
   end,
 }
-

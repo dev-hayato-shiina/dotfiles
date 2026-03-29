@@ -1,5 +1,6 @@
 return {
   "multicursor.nvim",
+  auto_enable = true,
   event = "DeferredUIEnter",
   after = function(_)
     local mc = require("multicursor-nvim")
@@ -56,4 +57,3 @@ return {
     end)
   end,
 }
-

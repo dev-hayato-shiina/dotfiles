@@ -1,5 +1,6 @@
 return {
   "twilight.nvim",
+  auto_enable = true,
   event = "DeferredUIEnter",
   cmd = {
     "Twilight",
@@ -15,4 +16,3 @@ return {
     })
   end,
 }
-

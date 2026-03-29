@@ -1,6 +1,24 @@
-if vim.bo.filetype == "alpha" then return end
-
 local opt = vim.opt
+
+-- NOTE: These 2 should be set up before any plugins with keybinds are loaded.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- stops line wrapping from being confusing
+vim.o.breakindent = true
+
+-- Save undo history
+vim.o.undofile = true
+
+-- Decrease update time
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+
+-- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true
+
+vim.g.netrw_liststyle = 0
+vim.g.netrw_banner = 0
 
 -- ===== ファイル =====
 
@@ -38,6 +56,12 @@ opt.fillchars = { -- 特殊文字の表示形式
   foldsep = " ",
   diff = "╱",
   eob = " ",
+}
+opt.list = true
+opt.listchars = { -- 特定の空白文字を表示する
+  tab = "» ",
+  trail = "·",
+  nbsp = "␣"
 }
 
 -- ===== 動作 =====
@@ -82,8 +106,8 @@ opt.foldtext = "" -- 折り畳み行のテキストを非表示にする
 
 -- ===== スクロール =====
 
-opt.scrolloff = 8 -- カーソル上下に常時表示するコンテキスト行数
-opt.sidescrolloff = 8 -- カーソル左右に常時表示するコンテキスト列数
+opt.scrolloff = 10 -- カーソル上下に常時表示するコンテキスト行数
+opt.sidescrolloff = 10 -- カーソル左右に常時表示するコンテキスト列数
 
 -- ===== ウィンドウ分割 =====
 
