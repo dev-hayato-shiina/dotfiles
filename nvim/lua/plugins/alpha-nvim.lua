@@ -19,6 +19,7 @@ return {
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "AlphaReady",
+      once = true,
       callback = function()
         local prev = vim.fn.bufnr("#")
         if prev ~= -1 and vim.fn.buflisted(prev) == 1 and vim.api.nvim_buf_get_name(prev) == "" then
