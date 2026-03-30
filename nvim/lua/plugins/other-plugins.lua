@@ -130,7 +130,7 @@ return {
     "nvim-treesitter",
     lazy = false,
     auto_enable = true,
-    after = function(plugin)
+    after = function(_)
       ---@param buf integer
       ---@param language string
       local function treesitter_try_attach(buf, language)
@@ -178,7 +178,7 @@ return {
     "nvim-treesitter-textobjects",
     auto_enable = true,
     lazy = false,
-    before = function(plugin)
+    before = function(_)
       -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/main?tab=readme-ov-file#using-a-package-manager
       -- Disable entire built-in ftplugin mappings to avoid conflicts.
       -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
@@ -190,7 +190,7 @@ return {
       -- vim.g.no_rust_maps = true
       -- vim.g.no_go_maps = true
     end,
-    after = function(plugin)
+    after = function(_)
       require("nvim-treesitter-textobjects").setup {
         select = {
           -- Automatically jump forward to textobj, similar to targets.vim
@@ -247,14 +247,10 @@ return {
   {
     "conform.nvim",
     auto_enable = true,
-    -- cmd = { "" },
-    -- event = "",
-    -- ft = "",
     keys = {
       { "<leader>FF", desc = "[F]ormat [F]ile" },
     },
-    -- colorscheme = "",
-    after = function (plugin)
+    after = function (_)
       local conform = require("conform")
 
       conform.setup({
@@ -283,12 +279,8 @@ return {
   {
     "nvim-lint",
     auto_enable = true,
-    -- cmd = { "" },
     event = "FileType",
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
-    after = function (plugin)
+    after = function (_)
       require('lint').linters_by_ft = {
         -- NOTE: download some linters
         -- and configure them here
@@ -417,8 +409,7 @@ return {
     "fidget.nvim",
     auto_enable = true,
     event = "DeferredUIEnter",
-    -- keys = "",
-    after = function(plugin)
+    after = function(_)
       require('fidget').setup({})
     end,
   },
