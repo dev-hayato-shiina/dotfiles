@@ -16,6 +16,17 @@ return {
       "                                                     ",
     }
     alpha.setup(dashboard.config)
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AlphaReady",
+      callback = function()
+        local prev = vim.fn.bufnr("#")
+        if prev ~= -1 and vim.fn.buflisted(prev) == 1 and vim.api.nvim_buf_get_name(prev) == "" then
+          vim.cmd("bdelete " .. prev)
+        end
+      end,
+    })
+
     alpha.start(false)
   end,
 }
