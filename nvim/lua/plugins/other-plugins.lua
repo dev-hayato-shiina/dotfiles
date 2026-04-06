@@ -15,40 +15,39 @@ return {
     end,
     -- set up our on_attach function once before the spec loads
     before = function(_)
-      vim.lsp.config('*', {
+      vim.lsp.config("*", {
         on_attach = function(_, bufnr)
-
           -- we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
           local nmap = function(keys, func, desc)
             if desc then
-              desc = 'LSP: ' .. desc
+              desc = "LSP: " .. desc
             end
-            vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+            vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
           end
 
-          nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-          nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-          nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-          nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+          nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+          nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+          nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+          nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
 
           -- See `:help K` for why this keymap
-          nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-          nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+          nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+          nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
           -- Lesser used LSP functionality
-          nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-          nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-          nmap('<leader>wl', function()
+          nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+          nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+          nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+          nmap("<leader>wl", function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, '[W]orkspace [L]ist Folders')
+          end, "[W]orkspace [L]ist Folders")
 
           -- Create a command `:Format` local to the LSP buffer
-          vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+          vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
             vim.lsp.buf.format()
-          end, { desc = 'Format current buffer with LSP' })
-        end
+          end, { desc = "Format current buffer with LSP" })
+        end,
       })
     end,
   },
@@ -69,10 +68,10 @@ return {
     cmd = { "LazyDev" },
     ft = "lua",
     after = function(_)
-      require('lazydev').setup({
+      require("lazydev").setup({
         library = {
-          { words = { "nixInfo%.lze" }, path = nixInfo("lze", "plugins", "start", "lze") .. '/lua', },
-          { words = { "nixInfo%.lze" }, path = nixInfo("lzextras", "plugins", "start", "lzextras") .. '/lua' },
+          { words = { "nixInfo%.lze" }, path = nixInfo("lze", "plugins", "start", "lze") .. "/lua" },
+          { words = { "nixInfo%.lze" }, path = nixInfo("lzextras", "plugins", "start", "lzextras") .. "/lua" },
         },
       })
     end,
@@ -88,13 +87,13 @@ return {
     lsp = {
       -- if you provide the filetypes it doesn't ask lspconfig for the filetypes
       -- (meaning it doesn't call the callback function we defined in the main init.lua)
-      filetypes = { 'lua' },
+      filetypes = { "lua" },
       settings = {
         Lua = {
           signatureHelp = { enabled = true },
           diagnostics = {
-            globals = { "nixInfo", "vim", },
-            disable = { 'missing-fields' },
+            globals = { "nixInfo", "vim" },
+            disable = { "missing-fields" },
           },
         },
       },
@@ -112,17 +111,16 @@ return {
           nixpkgs = {
             expr = [[import <nixpkgs> {}]],
           },
-          options = {
-          },
+          options = {},
           formatting = {
-            command = { "nixfmt" }
+            command = { "nixfmt" },
           },
           diagnostic = {
             suppress = {
-              "sema-escaping-with"
-            }
-          }
-        }
+              "sema-escaping-with",
+            },
+          },
+        },
       },
     },
   },
@@ -162,7 +160,7 @@ return {
             return
           end
 
-          if not treesitter_try_attach(buf,language) then
+          if not treesitter_try_attach(buf, language) then
             if vim.tbl_contains(installable_parsers, language) then
               -- not already installed, so try to install them via nvim-treesitter if possible
               require("nvim-treesitter").install(language):await(function()
@@ -191,7 +189,7 @@ return {
       -- vim.g.no_go_maps = true
     end,
     after = function(_)
-      require("nvim-treesitter-textobjects").setup {
+      require("nvim-treesitter-textobjects").setup({
         select = {
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
@@ -203,8 +201,8 @@ return {
           -- and should return the mode ('v', 'V', or '<c-v>') or a table
           -- mapping query_strings to modes.
           selection_modes = {
-            ['@parameter.outer'] = 'v', -- charwise
-            ['@function.outer'] = 'V', -- linewise
+            ["@parameter.outer"] = "v", -- charwise
+            ["@function.outer"] = "V", -- linewise
             -- ['@class.outer'] = '<c-v>', -- blockwise
           },
           -- If you set this to `true` (default is `false`) then any textobject is
@@ -218,25 +216,25 @@ return {
           -- and should return true of false
           include_surrounding_whitespace = false,
         },
-      }
+      })
 
       -- keymaps
       -- You can use the capture groups defined in `textobjects.scm`
       vim.keymap.set({ "x", "o" }, "am", function()
-        require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")
+        require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
       end)
       vim.keymap.set({ "x", "o" }, "im", function()
-        require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
+        require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
       end)
       vim.keymap.set({ "x", "o" }, "ac", function()
-        require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects")
+        require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
       end)
       vim.keymap.set({ "x", "o" }, "ic", function()
-        require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects")
+        require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
       end)
       -- You can also use captures from other query groups like `locals.scm`
       vim.keymap.set({ "x", "o" }, "as", function()
-        require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
+        require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")
       end)
 
       -- NOTE: for more textobjects options, see the following link.
@@ -250,7 +248,7 @@ return {
     keys = {
       { "<leader>FF", desc = "[F]ormat [F]ile" },
     },
-    after = function (_)
+    after = function(_)
       local conform = require("conform")
 
       conform.setup({
@@ -280,8 +278,8 @@ return {
     "nvim-lint",
     auto_enable = true,
     event = "FileType",
-    after = function (_)
-      require('lint').linters_by_ft = {
+    after = function(_)
+      require("lint").linters_by_ft = {
         -- NOTE: download some linters
         -- and configure them here
         -- markdown = {'vale',},
@@ -316,12 +314,12 @@ return {
     "blink.cmp",
     auto_enable = true,
     event = "DeferredUIEnter",
-    after = function (_)
+    after = function(_)
       require("blink.cmp").setup({
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
         -- See :h blink-cmp-config-keymap for configuring keymaps
-        keymap =  {
-          preset = 'default',
+        keymap = {
+          preset = "default",
         },
         cmdline = {
           enabled = true,
@@ -333,18 +331,22 @@ return {
           sources = function()
             local type = vim.fn.getcmdtype()
             -- Search forward and backward
-            if type == '/' or type == '?' then return { 'buffer' } end
+            if type == "/" or type == "?" then
+              return { "buffer" }
+            end
             -- Commands
-            if type == ':' or type == '@' then return { 'cmdline', 'cmp_cmdline' } end
+            if type == ":" or type == "@" then
+              return { "cmdline", "cmp_cmdline" }
+            end
             return {}
           end,
         },
         fuzzy = {
           sorts = {
-            'exact',
+            "exact",
             -- defaults
-            'score',
-            'sort_text',
+            "score",
+            "sort_text",
           },
         },
         signature = {
@@ -355,8 +357,9 @@ return {
         },
         completion = {
           menu = {
+            border = "rounded",
             draw = {
-              treesitter = { 'lsp' },
+              treesitter = { "lsp" },
               components = {
                 label = {
                   text = function(ctx)
@@ -371,10 +374,13 @@ return {
           },
           documentation = {
             auto_show = true,
+            window = {
+              border = "rounded",
+            },
           },
         },
         sources = {
-          default = { 'lsp', 'path', 'buffer', 'omni' },
+          default = { "lsp", "path", "buffer", "omni" },
           providers = {
             path = {
               score_offset = 50,
@@ -383,11 +389,11 @@ return {
               score_offset = 40,
             },
             cmp_cmdline = {
-              name = 'cmp_cmdline',
-              module = 'blink.compat.source',
+              name = "cmp_cmdline",
+              module = "blink.compat.source",
               score_offset = -100,
               opts = {
-                cmp_name = 'cmdline',
+                cmp_name = "cmdline",
               },
             },
           },
@@ -410,7 +416,7 @@ return {
     auto_enable = true,
     event = "DeferredUIEnter",
     after = function(_)
-      require('fidget').setup({})
+      require("fidget").setup({})
     end,
   },
 }

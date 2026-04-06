@@ -4,7 +4,7 @@ return {
   event = "DeferredUIEnter",
   after = function(_)
     require("notify").setup({
-      top_down = false,
+      background_colour = "#000000",
     })
   end,
 }

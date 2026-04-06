@@ -27,9 +27,9 @@ return {
         TabLine = { fg = "none", bg = "none" },
         TabLineSel = { fg = "none", bg = "none" },
         TabLineFill = { fg = "none", bg = "none" },
-        BufferLineSeparatorSelected = { fg = c.bg2, bg = "none" },
-        BufferLineSeparatorVisible = { fg = c.bg2, bg = "none" },
-        BufferLineSeparator = { fg = c.bg2, bg = "none" },
+        BufferLineSeparatorSelected = { fg = "none", bg = "none" },
+        BufferLineSeparatorVisible = { fg = "none", bg = "none" },
+        BufferLineSeparator = { fg = "none", bg = "none" },
 
         -- StatusLine
         -- :filter /^StatusLine/ highlight
@@ -37,6 +37,19 @@ return {
         StatusLineNC = { bg = "none" },
         StatusLineTerm = { bg = "none" },
         StatusLineTermNC = { bg = "none" },
+
+        -- Which Key, Blink
+        -- :filter /^Which/ highlight
+        -- :filter /^Blink/ highlight
+        NormalFloat = { fg = c.cyan, bg = "none" },
+        FloatBorder = { fg = c.cyan, bg = "none" },
+        BlinkCmpDoc = { bg = "none" },
+        Pmenu = { fg = c.cyan, bg = "none" },
+        PmenuExtra = { bg = "none" },
+
+        -- fzf
+        -- :filter /^FzfLua/ highlight
+        FzfLuaBorder = { fg = c.cyan, bg = "none" },
       },
     })
 

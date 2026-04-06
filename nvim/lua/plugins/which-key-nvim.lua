@@ -4,6 +4,9 @@ return {
   event = "DeferredUIEnter",
   after = function(_)
     require("which-key").setup({
+      win = {
+        border = "rounded",
+      },
       spec = {
         { "<leader>t", group = "翻訳", icon = "󰗊" },
         { "<leader>tr", mode = "v", desc = "選択範囲の翻訳", icon = "󰗊" },
@@ -38,5 +41,6 @@ return {
         { "<leader>s", hidden = true },
       },
     })
+    vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = "none" })
   end,
 }
