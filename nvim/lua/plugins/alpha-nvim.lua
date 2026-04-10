@@ -28,6 +28,8 @@ return {
       end,
     })
 
-    alpha.start(false)
+    if vim.fn.argc() == 0 then
+      alpha.start(false)
+    end
   end,
 }
